@@ -1,0 +1,260 @@
+/* Importation des polices */
+/* Yomogi */
+@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
+
+/* Palette de couleur:
+https://colorhunt.co/palette/07222735858b4fbdbaaefeff */
+
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	background: #072227;
+	font-family: "Yomogi", sans-serif;
+	color: #f1f1f1;
+}
+
+header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-size: 3em;
+	font-weight: bolder;
+	color: #f9d371;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+button {
+	font-family: "Yomogi", sans-serif;
+	font-size: 1em;
+	font-weight: bolder;
+	border-radius: 5px;
+	border: 3px solid #f1f1f1;
+	height: 40px;
+	padding: 0px 10px;
+	background: #f9d371;
+}
+button:hover {
+	cursor: pointer;
+	background: #f1c450;
+}
+
+button:active {
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75) inset;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75) inset;
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75) inset;
+}
+
+form {
+	display: flex;
+	margin-top: 20px;
+}
+
+.regle {
+	width: 500px;
+}
+
+.regle span {
+	color: #f9d371;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.score {
+	margin-top: 20px;
+	display: grid;
+	height: 250px;
+	grid-template-columns: 1fr 300px 1fr;
+}
+
+.score_gauche {
+	text-align: center;
+	color: red;
+}
+
+.coupsRestants {
+	font-size: 5em;
+	color: red;
+}
+
+.score_centre {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.score_centre img {
+	height: 230px;
+}
+
+.score_droite {
+	text-align: center;
+	color: greenyellow;
+}
+
+.lettresManquantes {
+	font-size: 5em;
+	color: greenyellow;
+}
+
+.resultat {
+	width: 500px;
+	position: relative;
+}
+
+.mot {
+	position: absolute;
+	padding: 15px;
+	background: black;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border-radius: 20px;
+}
+
+.bravo {
+	position: absolute;
+	width: 100%;
+	background: green;
+	height: 80px;
+	border-radius: 20px;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+.perdu {
+	position: absolute;
+	width: 100%;
+	background: red;
+	height: 80px;
+	border-radius: 20px;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+.mot div {
+	background: #072227;
+	border-radius: 5px;
+	margin: 5px;
+	height: 40px;
+	width: 30px;
+	font-size: 2em;
+	text-transform: capitalize;
+	text-align: center;
+}
+
+.clavierVirtuel {
+	display: grid;
+	margin-top: 80px;
+	grid-template-columns: repeat(10, 50px);
+	padding-top: 20px;
+}
+
+.touche {
+	height: 45px;
+	width: 45px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-size: 1.5em;
+	background: #35858b;
+	border-radius: 7px;
+	border: 2px solid;
+	margin: 3px 3px 2px 2px;
+	padding-top: 3px;
+}
+
+.touchepressee {
+	height: 45px;
+	width: 45px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-size: 1.5em;
+	border-radius: 7px;
+	border: 2px solid 072227;
+	margin: 3px 3px 2px 2px;
+	padding-top: 3px;
+	background: #070707;
+	color: #072227;
+}
+
+.touche:hover {
+	background: #072227;
+	border: 2px solid grey;
+	cursor: pointer;
+}
+
+.touche:active {
+	background: black;
+}
+
+.saisieDirecte {
+	margin: 15px 0px;
+	text-align: center;
+	font-size: 1.2em;
+	color: #f1c450;
+}
+
+#motPropose {
+	width: 300px;
+	height: 40px;
+	font-size: 1em;
+	font-family: "Yomogi", sans-serif;
+	text-transform: uppercase;
+	border-radius: 10px 0 0 10px;
+	border: 2px solid #f1f1f1;
+	text-align: center;
+}
+
+#valider {
+	height: 40px;
+	width: 140px;
+	font-size: 1em;
+	font-family: "Yomogi", sans-serif;
+	text-transform: uppercase;
+	border-radius: 0px 10px 10px 0px;
+	background: #35858b;
+	border: 2px solid #f1f1f1;
+	color: #f1f1f1;
+}
+
+#valider:hover {
+	background: #072227;
+	border: 2px solid grey;
+	cursor: pointer;
+}
+
+#valider:active {
+	background: black;
+}

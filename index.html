@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="shortcut icon" href="coup6.png" type="image/x-icon">
+		<title>Projet passerelle #1 | Jeu du pendu</title>
+	</head>
+	<body>
+		<header>
+			<h1>Le jeu du Pendu</h1>			
+		</header>
+		<main>
+			<div class="regle">
+					Un étudiant Believemy est à bout... Son code du "jeu du pendu" est victime d'un bug
+					qui empêche le bon fonctionnement de ce dernier. Prouve-lui que tout
+					va bien et sauve le de son funeste destin !!</br>
+					<span>Trouve le mot caché en moins de coups possible !!</span>
+			</div>
+			<div class="score">
+				<div class="score_gauche">
+                   COUPS</br>
+                   RESTANTS:
+                   <div class="coupsRestants"> 6 </div>
+                </div>
+				<div class="score_centre">
+					<img src="coup0.png" alt="pendu" />
+				</div>
+				<div class="score_droite">
+                    LETTRES</br>
+                    MANQUANTES:
+                    <div class="lettresManquantes"></div>
+                </div>
+			</div>
+			<div class = "resultat">
+				<div class="bravo"></div>
+				<div class="perdu"></div>
+				<div class="mot"></div>
+			</div>
+			<div class="clavierVirtuel"></div>
+			<div class="saisieDirecte">
+				<p>Tu bluffes Martoni !</p>
+				<form>
+					<input type="text" name="mot" id="motPropose" placeholder="Ecris ta proposition">
+					<input type="submit" value="Valider" id="valider">
+				</form>
+			</div>
+		</main>
+		<footer>
+			<h2>Projet Passerelle #1 | Programme Rocket</h2>
+			<p>Projet réalisé par @MathSAUL - Promotion Steve Jobs</p></footer>
+			
+		<script src="script.js"></script>
+	</body>
+</html>
