@@ -353,6 +353,9 @@ let nombreDErreur = 0;
 let lettreValide = false;
 let coupsRestants = 6;
 let lettresManquantes;
+
+// SELECTION DES ELEMENTS DU DOM A MODIFIER=============================================================
+
 let afficheRes = document.querySelector(".mot");
 let afficheClavier = document.querySelector(".clavierVirtuel");
 let affichePendu = document.querySelector(".score_centre");
@@ -363,7 +366,7 @@ let perdu = document.querySelector(".perdu");
 let motPropose = document.querySelector("#motPropose");
 let valider = document.querySelector("#submit");
 
-//ENVOIE DU FORMULAIRE ==================================================================================
+//ENVOI DU FORMULAIRE ==================================================================================
 
 document.querySelector("form").addEventListener("submit", function (e) {
 	e.preventDefault();
