@@ -1,4 +1,6 @@
 // JEU DU PENDU | Projet passerelle #1 | Formation Believemy
+//Lance le code
+
 const clavier = [
 	"a",
 	"z",
@@ -27,321 +29,322 @@ const clavier = [
 	"b",
 	"n",
 ];
+
 const listeDeMots = [
-	"ane",
-	"axe",
-	"bel",
-	"bip",
-	"car",
-	"col",
-	"coq",
-	"cor",
-	"cou",
-	"cri",
-	"gag",
-	"gaz",
-	"gel",
-	"jus",
-	"net",
-	"nul",
-	"val",
-	"ski",
-	"sot",
-	"tas",
-	"tic",
-	"atre",
-	"beau",
-	"bete",
-	"boxe",
-	"brun",
-	"cerf",
-	"chez",
-	"cire",
-	"dame",
-	"dent",
-	"dock",
-	"dodo",
-	"drap",
-	"dune",
-	"emeu",
-	"fado",
-	"faux",
-	"ibis",
-	"jazz",
-	"joli",
-	"joue",
-	"kaki",
-	"logov",
-	"loin",
-	"long",
-	"lune",
-	"lynx",
-	"mine",
-	"mure",
-	"ouie",
-	"ours",
-	"pion",
-	"rhum",
-	"ride",
-	"rock",
-	"seau",
-	"test",
-	"thym",
-	"trou",
-	"truc",
-	"user",
-	"vert",
-	"yogi",
-	"watt",
-	"acces",
-	"aimer",
-	"aloes",
-	"assez",
-	"avion",
-	"awale",
-	"balai",
-	"banjo",
-	"barbe",
-	"bonne",
-	"bruit",
-	"buche",
-	"cache",
-	"capot",
-	"carte",
-	"chien",
-	"crane",
-	"cycle",
-	"ebene",
-	"essai",
-	"gifle",
-	"honni",
-	"jambe",
-	"koala",
-	"livre",
-	"lourd",
-	"maman",
-	"moult",
-	"noeud",
-	"ortie",
-	"peche",
-	"poire",
-	"pomme",
-	"poste",
-	"prune",
-	"radar",
-	"radis",
-	"robot",
-	"route",
-	"rugby",
-	"seuil",
-	"taupe",
-	"tenue",
-	"texte",
-	"tyran",
-	"usuel",
-	"valse",
-	"acajou",
-	"agneau",
-	"alarme",
-	"ananas",
-	"angora",
-	"animal",
-	"arcade",
-	"aviron",
-	"azimut",
-	"babine",
-	"balade",
-	"bonzai",
-	"basson",
-	"billet",
-	"bouche",
-	"boucle",
-	"bronze",
-	"cabane",
-	"caiman",
-	"cloche",
-	"cheque",
-	"cirage",
-	"coccyx",
-	"crayon",
-	"garage",
-	"gospel",
-	"goulot",
-	"gramme",
-	"grelot",
-	"guenon",
-	"ochet",
-	"hormis",
-	"humour",
-	"hurler",
-	"jargon",
+	"Âne",
+	"Axe",
+	"Bel",
+	"Bip",
+	"Car",
+	"Col",
+	"Coq",
+	"Cor",
+	"Cou",
+	"Cri",
+	"Gag",
+	"Gaz",
+	"Gel",
+	"Jus",
+	"Net",
+	"Nul",
+	"Val",
+	"Ski",
+	"Sot",
+	"Tas",
+	"Tic",
+	"Atre",
+	"Beau",
+	"Bete",
+	"Boxe",
+	"Brun",
+	"Cerf",
+	"Chez",
+	"Cire",
+	"Dame",
+	"Dent",
+	"Dock",
+	"Dodo",
+	"Drap",
+	"Dune",
+	"Emeu",
+	"Fado",
+	"Faux",
+	"Ibis",
+	"Jazz",
+	"Joli",
+	"Joue",
+	"Kaki",
+	"Logov",
+	"Loin",
+	"Long",
+	"Lune",
+	"Lynx",
+	"Mine",
+	"Mure",
+	"Ouie",
+	"Ours",
+	"Pion",
+	"Rhum",
+	"Ride",
+	"Rock",
+	"Seau",
+	"Test",
+	"Thym",
+	"Trou",
+	"Truc",
+	"User",
+	"Vert",
+	"Yogi",
+	"Watt",
+	"Acces",
+	"Aimer",
+	"Aloes",
+	"Assez",
+	"Avion",
+	"Awale",
+	"Balai",
+	"Banjo",
+	"Barbe",
+	"Bonne",
+	"Bruit",
+	"Buche",
+	"Cache",
+	"Capot",
+	"Carte",
+	"Chien",
+	"Crane",
+	"Cycle",
+	"Ebene",
+	"Essai",
+	"Gifle",
+	"Honni",
+	"Jambe",
+	"Koala",
+	"Livre",
+	"Lourd",
+	"Maman",
+	"Moult",
+	"Noeud",
+	"Ortie",
+	"Peche",
+	"Poire",
+	"Pomme",
+	"Poste",
+	"Prune",
+	"Radar",
+	"Radis",
+	"Robot",
+	"Route",
+	"Rugby",
+	"Seuil",
+	"Taupe",
+	"Tenue",
+	"Texte",
+	"Tyran",
+	"Usuel",
+	"Valse",
+	"Acajou",
+	"Agneau",
+	"Alarme",
+	"Ananas",
+	"Angora",
+	"Animal",
+	"Arcade",
+	"Aviron",
+	"Azimut",
+	"Babine",
+	"Balade",
+	"Bonzai",
+	"Basson",
+	"Billet",
+	"Bouche",
+	"Boucle",
+	"Bronze",
+	"Cabane",
+	"Caiman",
+	"Cloche",
+	"Cheque",
+	"Cirage",
+	"Coccyx",
+	"Crayon",
+	"Garage",
+	"Gospel",
+	"Goulot",
+	"Gramme",
+	"Grelot",
+	"Guenon",
+	"Hochet",
+	"Hormis",
+	"Humour",
+	"Hurler",
+	"Jargon",
 	"Limite",
-	"ionne",
-	"menthe",
-	"oiseau",
-	"podium",
-	"poulpe",
-	"poumon",
-	"puzzle",
-	"quartz",
-	"rapide",
-	"seisme",
-	"tetine",
-	"tomate",
-	"walabi",
-	"whisky",
-	"zipper",
-	"abriter",
-	"ballast",
-	"baryton",
-	"bassine",
-	"batavia",
-	"billard",
-	"bretzel",
-	"cithare",
-	"chariot",
-	"clairon",
-	"corbeau",
-	"cortege",
-	"crapaud",
-	"cymbale",
-	"dentier",
-	"djembe",
-	"drapeau",
-	"exemple",
-	"fourmis",
-	"grandir",
-	"iceberg",
-	"javelot",
-	"jockey",
-	"journal",
-	"journee",
-	"jouxter",
-	"losange",
-	"macadam",
-	"mondial",
-	"notable",
-	"oxygene",
-	"panique",
-	"petrole",
-	"poterie",
-	"pouvoir",
-	"renzgat",
-	"scooter",
-	"senteur",
-	"sifflet",
-	"spirale",
-	"sucette",
-	"strophe",
-	"tonneau",
-	"trousse",
-	"tunique",
-	"ukulele",
-	"vautour",
-	"zozoter",
-	"aquarium",
-	"araignee",
-	"arbalete",
-	"archipel",
-	"banquise",
-	"batterie",
-	"brocante",
-	"brouhaha",
-	"capeline",
-	"clavecin",
-	"cloporte",
-	"cebutant",
-	"diapason",
-	"gangster",
-	"gothique",
-	"hautbois",
-	"herisson",
-	"logiciel",
-	"objectif",
-	"paranoia",
-	"parcours",
-	"pastiche",
-	"question",
-	"quetsche",
-	"scarabee",
-	"scorpion",
-	"symptome",
-	"tabouret",
-	"tomahawk",
-	"toujours",
-	"tourisme",
-	"triangle",
-	"utopique",
-	"zeppelin",
-	"accordeon",
-	"ascenseur",
-	"ascension",
-	"aseptiser",
-	"autoroute",
-	"avalanche",
-	"balalaika",
-	"bilboquet",
-	"bourricot",
-	"brillance",
-	"cabriolet",
-	"contrario",
-	"cornemuse",
-	"dangereux",
-	"epluchage",
-	"feodalite",
-	"forteresse",
-	"gondolier",
-	"graphique",
-	"goroscope",
-	"intrepide",
-	"klaxonner",
-	"mascarade",
-	"metaphore",
-	"narrateur",
-	"peripétie",
-	"populaire",
-	"printemps",
-	"quemander",
-	"tambourin",
-	"vestiaire",
-	"xylophone",
-	"acrostiche",
-	"apocalypse",
-	"attraction",
-	"aventurier",
-	"bouillotte",
-	"citrouille",
-	"controverse",
-	"coquelicot",
-	"dissimuler",
-	"flibustier",
-	"forestiere",
-	"grenouille",
-	"impossible",
-	"labyrinthe",
-	"maharadjah",
-	"prudemment",
-	"quadriceps",
-	"soliloquer",
-	"subjective",
-	"baccalaureat",
-	"abracadabra",
-	"francophile",
-	"pandemonium",
-	"chlorophylle",
-	"metallurgie",
-	"metamorphose",
-	"montgolfiere",
-	"kaleidoscope",
-	"conquistador",
-	"conspirateur",
-	"rhododendron",
-	"qualification",
-	"protozoaire",
-	"quadrilatere",
-	"zygomatique",
-	"sorcellerie",
-	"belligerant",
+	"Lionne",
+	"Menthe",
+	"Oiseau",
+	"Podium",
+	"Poulpe",
+	"Poumon",
+	"Puzzle",
+	"Quartz",
+	"Rapide",
+	"Seisme",
+	"Tetine",
+	"Tomate",
+	"Walabi",
+	"Whisky",
+	"Zipper",
+	"Abriter",
+	"Ballast",
+	"Baryton",
+	"Bassine",
+	"Batavia",
+	"Billard",
+	"Bretzel",
+	"Cithare",
+	"Chariot",
+	"Clairon",
+	"Corbeau",
+	"Cortege",
+	"Crapaud",
+	"Cymbale",
+	"Dentier",
+	"Djembe",
+	"Drapeau",
+	"Exemple",
+	"Fourmis",
+	"Grandir",
+	"Iceberg",
+	"Javelot",
+	"Jockey",
+	"Journal",
+	"Journee",
+	"Jouxter",
+	"Losange",
+	"Macadam",
+	"Mondial",
+	"Notable",
+	"Oxygene",
+	"Panique",
+	"Pétrole",
+	"Poterie",
+	"Pouvoir",
+	"Renzgat",
+	"Scooter",
+	"Senteur",
+	"Sifflet",
+	"Spirale",
+	"Sucette",
+	"Strophe",
+	"Tonneau",
+	"Trousse",
+	"Tunique",
+	"Ukulele",
+	"Vautour",
+	"Zozoter",
+	"Aquarium",
+	"Araignee",
+	"Arbalete",
+	"Archipel",
+	"Banquise",
+	"Batterie",
+	"Brocante",
+	"Brouhaha",
+	"Capeline",
+	"Clavecin",
+	"Cloporte",
+	"Debutant",
+	"Diapason",
+	"Gangster",
+	"Gothique",
+	"Hautbois",
+	"Herisson",
+	"Logiciel",
+	"Objectif",
+	"Paranoia",
+	"Parcours",
+	"Pastiche",
+	"Question",
+	"Quetsche",
+	"Scarabee",
+	"Scorpion",
+	"Symptome",
+	"Tabouret",
+	"Tomahawk",
+	"Toujours",
+	"Tourisme",
+	"Triangle",
+	"Utopique",
+	"Zeppelin",
+	"Accordeon",
+	"Ascenseur",
+	"Ascension",
+	"Aseptiser",
+	"Autoroute",
+	"Avalanche",
+	"Balalaika",
+	"Bilboquet",
+	"Bourricot",
+	"Brillance",
+	"Cabriolet",
+	"Contrario",
+	"Cornemuse",
+	"Dangereux",
+	"Epluchage",
+	"Feodalite",
+	"Forteresse",
+	"Gondolier",
+	"Graphique",
+	"Horoscope",
+	"Intrepide",
+	"Klaxonner",
+	"Mascarade",
+	"Metaphore",
+	"Narrateur",
+	"Peripétie",
+	"Populaire",
+	"Printemps",
+	"Quemander",
+	"Tambourin",
+	"Vestiaire",
+	"Xylophone",
+	"Acrostiche",
+	"Apocalypse",
+	"Attraction",
+	"Aventurier",
+	"Bouillotte",
+	"Citrouille",
+	"Controverse",
+	"Coquelicot",
+	"Dissimuler",
+	"Flibustier",
+	"Forestiere",
+	"Grenouille",
+	"Impossible",
+	"Labyrinthe",
+	"Maharadjah",
+	"Prudemment",
+	"Quadriceps",
+	"Soliloquer",
+	"Subjective",
+	"Baccalaureat",
+	"Abracadabra",
+	"Francophile",
+	"Pandemonium",
+	"Chlorophylle",
+	"Metallurgie",
+	"Metamorphose",
+	"Montgolfiere",
+	"Kalidoscope",
+	"Conquistador",
+	"Conspirateur",
+	"Rhododendron",
+	"Qualification",
+	"Protozoaire",
+	"Quadrilatere",
+	"Zygomatique",
+	"Sorcellerie",
+	"Belligerant",
 ];
 
 let motATrouver;
@@ -367,63 +370,50 @@ let valider = document.querySelector("#submit");
 bravo.style.visibility = "hidden";
 perdu.style.visibility = "hidden";
 
-genererMot();
-genererClavierVirtuel();
-let a = document.querySelector("#a");
-let b = document.querySelector("#b");
-let c = document.querySelector("#c");
-let d = document.querySelector("#d");
-let e = document.querySelector("#e");
-let f = document.querySelector("#f");
-let g = document.querySelector("#g");
-let h = document.querySelector("#h");
-let i = document.querySelector("#i");
-let j = document.querySelector("#j");
-let k = document.querySelector("#k");
-let l = document.querySelector("#l");
-let m = document.querySelector("#m");
-let n = document.querySelector("#n");
-let o = document.querySelector("#o");
-let p = document.querySelector("#p");
-let q = document.querySelector("#q");
-let r = document.querySelector("#r");
-let s = document.querySelector("#s");
-let t = document.querySelector("#t");
-let u = document.querySelector("#u");
-let v = document.querySelector("#v");
-let w = document.querySelector("#w");
-let x = document.querySelector("#x");
-let y = document.querySelector("#y");
-let z = document.querySelector("#z");
+// LANCE LE CODE
+
+start();
+
+function start() {
+	genererMot();
+	genererLesVariablesDuClavier(clavier);
+	genererClavierVirtuel();
+}
 
 function genererMot() {
 	motATrouver = listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
-	genererCases(motATrouver.length);
+	afficherCases(motATrouver.length);
 	motATrouverSplit = motATrouver.split("");
 	lettresManquantes = motATrouver.length;
 	affichelettresManquantes.textContent = lettresManquantes;
 }
 
-function genererCases(nombre) {
+function afficherCases(nombre) {
 	for (let i = 0; i < nombre; i++) {
-		afficherCase(i);
+		genererCase(i);
 	}
 }
 
-function genererClavierVirtuel() {
-	for (let i = 0; i < clavier.length; i++) {
-		afficherClavierVirtuel(clavier[i]);
-	}
-}
-
-function afficherCase(i) {
+function genererCase(i) {
 	let nouvelleCase = document.createElement("div");
 	nouvelleCase.textContent = "  ";
 	nouvelleCase.className += `case${i}`;
 	afficheRes.appendChild(nouvelleCase);
 }
 
-function afficherClavierVirtuel(nomDeLaTouche) {
+function genererClavierVirtuel() {
+	for (let i = 0; i < clavier.length; i++) {
+		genererTouche(clavier[i]);
+	}
+}
+
+function genererLesVariablesDuClavier(clavier) {
+	for (var i = 0; i < clavier.length; i++) {
+		window[clavier[i]] = document.querySelector(`#${clavier[i]}`);
+	}
+}
+
+function genererTouche(nomDeLaTouche) {
 	let touche = document.createElement("div");
 	touche.textContent = nomDeLaTouche;
 	touche.className = "touche";
@@ -431,34 +421,16 @@ function afficherClavierVirtuel(nomDeLaTouche) {
 	afficheClavier.appendChild(touche);
 }
 
-function victoire() {
-	//C'est gagné
-	bravo.style.visibility = "visible";
-	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-	let btn = document.querySelector("button");
-	btn.addEventListener("click", () => {
-		location.reload();
-	});
-}
-
-function defaite() {
-	// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
-	perdu.style.visibility = "visible";
-	perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-	let btn = document.querySelector("button");
-	btn.addEventListener("click", () => {
-		location.reload();
-	});
-}
 function saisieDirecte(mot) {
-	if (
-		isNaN(mot) &&
-		mot != "" &&
-		mot != null &&
-		mot.length === motATrouver.length
-	) {
+	if (isNaN(mot) && mot != "" && mot != null) {
 		if (mot === motATrouver) {
-			victoire();
+			//C'est gagné
+			bravo.style.visibility = "visible";
+			bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+			let btn = document.querySelector("button");
+			btn.addEventListener("click", () => {
+				location.reload();
+			});
 		} else {
 			//C'est perdu
 			nombreDErreur++;
@@ -466,7 +438,13 @@ function saisieDirecte(mot) {
 			afficheCoupsRestants.textContent = coupsRestants;
 			afficheLePendu();
 			if (nombreDErreur === 6) {
-				defaite();
+				// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
+				perdu.style.visibility = "visible";
+				perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+				let btn = document.querySelector("button");
+				btn.addEventListener("click", () => {
+					location.reload();
+				});
 			}
 		}
 	}
@@ -480,7 +458,13 @@ function verifierLettreChoisie() {
 			affichelettresManquantes.textContent = lettresManquantes;
 			lettreValide = true;
 			if (motATrouverSplit.length === lettrePlacees) {
-				victoire();
+				// alert("Vous avez gagné");
+				bravo.style.visibility = "visible";
+				bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+				let btn = document.querySelector("button");
+				btn.addEventListener("click", () => {
+					location.reload();
+				});
 			}
 		}
 	}
@@ -489,7 +473,13 @@ function verifierLettreChoisie() {
 		coupsRestants--;
 		afficheCoupsRestants.textContent = coupsRestants;
 		if (nombreDErreur === 6) {
-			defaite();
+			// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
+			perdu.style.visibility = "visible";
+			perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+			let btn = document.querySelector("button");
+			btn.addEventListener("click", () => {
+				location.reload();
+			});
 		}
 	} else {
 		lettreValide = false;
