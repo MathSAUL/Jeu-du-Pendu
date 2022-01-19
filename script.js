@@ -27,42 +27,321 @@ const clavier = [
 	"b",
 	"n",
 ];
-
 const listeDeMots = [
-	"moto",
-	"chateau",
-	"chat",
-	"chien",
-	"arbre",
-	"clown",
-	"voiture",
-	"believemy",
-	"garage",
-	"javascript",
-	"programmeur",
-	"ordinateur",
-	"informaticien",
+	"ane",
+	"axe",
+	"bel",
+	"bip",
+	"car",
+	"col",
+	"coq",
+	"cor",
+	"cou",
+	"cri",
+	"gag",
+	"gaz",
+	"gel",
+	"jus",
+	"net",
+	"nul",
+	"val",
+	"ski",
+	"sot",
+	"tas",
+	"tic",
+	"atre",
+	"beau",
+	"bete",
+	"boxe",
+	"brun",
+	"cerf",
+	"chez",
+	"cire",
+	"dame",
+	"dent",
+	"dock",
+	"dodo",
+	"drap",
+	"dune",
+	"emeu",
+	"fado",
+	"faux",
+	"ibis",
+	"jazz",
+	"joli",
+	"joue",
+	"kaki",
+	"logov",
+	"loin",
+	"long",
+	"lune",
+	"lynx",
+	"mine",
+	"mure",
+	"ouie",
+	"ours",
+	"pion",
+	"rhum",
+	"ride",
+	"rock",
+	"seau",
+	"test",
+	"thym",
+	"trou",
+	"truc",
+	"user",
+	"vert",
+	"yogi",
+	"watt",
+	"acces",
+	"aimer",
+	"aloes",
+	"assez",
 	"avion",
-	"pilote",
-	"football",
-	"ornithorynque",
-	"pyramide",
-	"zebre",
-	"looping",
-	"cratere",
-	"coder",
-	"lapin",
-	"alouette",
-	"parapluie",
-	"cartable",
-	"aeronef",
-	"planetarium",
-	"cryptomonnaie",
-	"coronavirus",
-	"epidemie",
-	"vaccin",
-	"paludisme",
-	"jardinage",
+	"awale",
+	"balai",
+	"banjo",
+	"barbe",
+	"bonne",
+	"bruit",
+	"buche",
+	"cache",
+	"capot",
+	"carte",
+	"chien",
+	"crane",
+	"cycle",
+	"ebene",
+	"essai",
+	"gifle",
+	"honni",
+	"jambe",
+	"koala",
+	"livre",
+	"lourd",
+	"maman",
+	"moult",
+	"noeud",
+	"ortie",
+	"peche",
+	"poire",
+	"pomme",
+	"poste",
+	"prune",
+	"radar",
+	"radis",
+	"robot",
+	"route",
+	"rugby",
+	"seuil",
+	"taupe",
+	"tenue",
+	"texte",
+	"tyran",
+	"usuel",
+	"valse",
+	"acajou",
+	"agneau",
+	"alarme",
+	"ananas",
+	"angora",
+	"animal",
+	"arcade",
+	"aviron",
+	"azimut",
+	"babine",
+	"balade",
+	"bonzai",
+	"basson",
+	"billet",
+	"bouche",
+	"boucle",
+	"bronze",
+	"cabane",
+	"caiman",
+	"cloche",
+	"cheque",
+	"cirage",
+	"coccyx",
+	"crayon",
+	"garage",
+	"gospel",
+	"goulot",
+	"gramme",
+	"grelot",
+	"guenon",
+	"ochet",
+	"hormis",
+	"humour",
+	"hurler",
+	"jargon",
+	"Limite",
+	"ionne",
+	"menthe",
+	"oiseau",
+	"podium",
+	"poulpe",
+	"poumon",
+	"puzzle",
+	"quartz",
+	"rapide",
+	"seisme",
+	"tetine",
+	"tomate",
+	"walabi",
+	"whisky",
+	"zipper",
+	"abriter",
+	"ballast",
+	"baryton",
+	"bassine",
+	"batavia",
+	"billard",
+	"bretzel",
+	"cithare",
+	"chariot",
+	"clairon",
+	"corbeau",
+	"cortege",
+	"crapaud",
+	"cymbale",
+	"dentier",
+	"djembe",
+	"drapeau",
+	"exemple",
+	"fourmis",
+	"grandir",
+	"iceberg",
+	"javelot",
+	"jockey",
+	"journal",
+	"journee",
+	"jouxter",
+	"losange",
+	"macadam",
+	"mondial",
+	"notable",
+	"oxygene",
+	"panique",
+	"petrole",
+	"poterie",
+	"pouvoir",
+	"renzgat",
+	"scooter",
+	"senteur",
+	"sifflet",
+	"spirale",
+	"sucette",
+	"strophe",
+	"tonneau",
+	"trousse",
+	"tunique",
+	"ukulele",
+	"vautour",
+	"zozoter",
+	"aquarium",
+	"araignee",
+	"arbalete",
+	"archipel",
+	"banquise",
+	"batterie",
+	"brocante",
+	"brouhaha",
+	"capeline",
+	"clavecin",
+	"cloporte",
+	"cebutant",
+	"diapason",
+	"gangster",
+	"gothique",
+	"hautbois",
+	"herisson",
+	"logiciel",
+	"objectif",
+	"paranoia",
+	"parcours",
+	"pastiche",
+	"question",
+	"quetsche",
+	"scarabee",
+	"scorpion",
+	"symptome",
+	"tabouret",
+	"tomahawk",
+	"toujours",
+	"tourisme",
+	"triangle",
+	"utopique",
+	"zeppelin",
+	"accordeon",
+	"ascenseur",
+	"ascension",
+	"aseptiser",
+	"autoroute",
+	"avalanche",
+	"balalaika",
+	"bilboquet",
+	"bourricot",
+	"brillance",
+	"cabriolet",
+	"contrario",
+	"cornemuse",
+	"dangereux",
+	"epluchage",
+	"feodalite",
+	"forteresse",
+	"gondolier",
+	"graphique",
+	"goroscope",
+	"intrepide",
+	"klaxonner",
+	"mascarade",
+	"metaphore",
+	"narrateur",
+	"peripétie",
+	"populaire",
+	"printemps",
+	"quemander",
+	"tambourin",
+	"vestiaire",
+	"xylophone",
+	"acrostiche",
+	"apocalypse",
+	"attraction",
+	"aventurier",
+	"bouillotte",
+	"citrouille",
+	"controverse",
+	"coquelicot",
+	"dissimuler",
+	"flibustier",
+	"forestiere",
+	"grenouille",
+	"impossible",
+	"labyrinthe",
+	"maharadjah",
+	"prudemment",
+	"quadriceps",
+	"soliloquer",
+	"subjective",
+	"baccalaureat",
+	"abracadabra",
+	"francophile",
+	"pandemonium",
+	"chlorophylle",
+	"metallurgie",
+	"metamorphose",
+	"montgolfiere",
+	"kaleidoscope",
+	"conquistador",
+	"conspirateur",
+	"rhododendron",
+	"qualification",
+	"protozoaire",
+	"quadrilatere",
+	"zygomatique",
+	"sorcellerie",
+	"belligerant",
 ];
 
 let motATrouver;
@@ -90,7 +369,6 @@ perdu.style.visibility = "hidden";
 
 genererMot();
 genererClavierVirtuel();
-
 let a = document.querySelector("#a");
 let b = document.querySelector("#b");
 let c = document.querySelector("#c");
@@ -120,32 +398,32 @@ let z = document.querySelector("#z");
 
 function genererMot() {
 	motATrouver = listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
-	afficherCases(motATrouver.length);
+	genererCases(motATrouver.length);
 	motATrouverSplit = motATrouver.split("");
 	lettresManquantes = motATrouver.length;
 	affichelettresManquantes.textContent = lettresManquantes;
 }
 
-function afficherCases(nombre) {
+function genererCases(nombre) {
 	for (let i = 0; i < nombre; i++) {
-		genererCase(i);
+		afficherCase(i);
 	}
 }
 
-function genererCase(i) {
+function genererClavierVirtuel() {
+	for (let i = 0; i < clavier.length; i++) {
+		afficherClavierVirtuel(clavier[i]);
+	}
+}
+
+function afficherCase(i) {
 	let nouvelleCase = document.createElement("div");
 	nouvelleCase.textContent = "  ";
 	nouvelleCase.className += `case${i}`;
 	afficheRes.appendChild(nouvelleCase);
 }
 
-function genererClavierVirtuel() {
-	for (let i = 0; i < clavier.length; i++) {
-		genererTouche(clavier[i]);
-	}
-}
-
-function genererTouche(nomDeLaTouche) {
+function afficherClavierVirtuel(nomDeLaTouche) {
 	let touche = document.createElement("div");
 	touche.textContent = nomDeLaTouche;
 	touche.className = "touche";
@@ -153,16 +431,34 @@ function genererTouche(nomDeLaTouche) {
 	afficheClavier.appendChild(touche);
 }
 
+function victoire() {
+	//C'est gagné
+	bravo.style.visibility = "visible";
+	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+	let btn = document.querySelector("button");
+	btn.addEventListener("click", () => {
+		location.reload();
+	});
+}
+
+function defaite() {
+	// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
+	perdu.style.visibility = "visible";
+	perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+	let btn = document.querySelector("button");
+	btn.addEventListener("click", () => {
+		location.reload();
+	});
+}
 function saisieDirecte(mot) {
-	if (isNaN(mot) && mot != "" && mot != null) {
+	if (
+		isNaN(mot) &&
+		mot != "" &&
+		mot != null &&
+		mot.length === motATrouver.length
+	) {
 		if (mot === motATrouver) {
-			//C'est gagné
-			bravo.style.visibility = "visible";
-			bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-			let btn = document.querySelector("button");
-			btn.addEventListener("click", () => {
-				location.reload();
-			});
+			victoire();
 		} else {
 			//C'est perdu
 			nombreDErreur++;
@@ -170,13 +466,7 @@ function saisieDirecte(mot) {
 			afficheCoupsRestants.textContent = coupsRestants;
 			afficheLePendu();
 			if (nombreDErreur === 6) {
-				// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
-				perdu.style.visibility = "visible";
-				perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-				let btn = document.querySelector("button");
-				btn.addEventListener("click", () => {
-					location.reload();
-				});
+				defaite();
 			}
 		}
 	}
@@ -190,13 +480,7 @@ function verifierLettreChoisie() {
 			affichelettresManquantes.textContent = lettresManquantes;
 			lettreValide = true;
 			if (motATrouverSplit.length === lettrePlacees) {
-				// alert("Vous avez gagné");
-				bravo.style.visibility = "visible";
-				bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-				let btn = document.querySelector("button");
-				btn.addEventListener("click", () => {
-					location.reload();
-				});
+				victoire();
 			}
 		}
 	}
@@ -205,13 +489,7 @@ function verifierLettreChoisie() {
 		coupsRestants--;
 		afficheCoupsRestants.textContent = coupsRestants;
 		if (nombreDErreur === 6) {
-			// alert(`Vous avez perdu! Le mot à trouver était: ${motATrouver}`);
-			perdu.style.visibility = "visible";
-			perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-			let btn = document.querySelector("button");
-			btn.addEventListener("click", () => {
-				location.reload();
-			});
+			defaite();
 		}
 	} else {
 		lettreValide = false;
