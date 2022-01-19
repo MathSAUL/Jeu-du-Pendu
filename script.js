@@ -366,6 +366,9 @@ let perdu = document.querySelector(".perdu");
 let motPropose = document.querySelector("#motPropose");
 let valider = document.querySelector("#submit");
 
+// LANCEMENT DU SCRIPT ===================================================================================
+lancerLaPartie();
+
 //ENVOI DU FORMULAIRE ==================================================================================
 
 document.querySelector("form").addEventListener("submit", function (e) {
@@ -519,6 +522,3 @@ function defaite() {
 		location.reload();
 	});
 }
-
-// LANCEMENT DU SCRIPT ===================================================================================
-lancerLaPartie();
