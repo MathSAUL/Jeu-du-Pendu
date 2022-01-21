@@ -354,6 +354,8 @@ let nombreDErreur = 0;
 let lettreValide = false;
 let coupsRestants = 6;
 let lettresManquantes;
+let scoreMemoire;
+let motsTrouvesMemoire;
 
 // SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
@@ -383,6 +385,8 @@ lancerLaPartie();
 function lancerLaPartie() {
 	bravo.style.visibility = "hidden";
 	perdu.style.visibility = "hidden";
+	console.log(localStorage.length);
+	console.log(localStorage.getItem("score"));
 
 	// Génére le mot aléatoire
 	motATrouver = listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
@@ -512,6 +516,7 @@ function victoire() {
 	bravo.style.visibility = "visible";
 	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
 
+	calculerScore();
 	//Propose de recommencer la partie
 	recommencer();
 }
@@ -532,3 +537,27 @@ function recommencer() {
 		location.reload();
 	});
 }
+
+function calculerScore(){
+	if(localStorage.getItem("score") && localStorage.getItem("motsTrouves")){
+		scoreMemoire = parseInt(localStorage.getItem("score"));
+		motsTrouvesMemoire = parseInt(localStorage.getItem("motsTrouves"));
+		localStorage.removeItem("score");
+		localStorage.removeItem("motsTrouves");
+		localStorage.setItem("score", parseInt(scoreMemoire + (coupsRestants*100*(motATrouver.length / 2))));
+		localStorage.setItem("motsTrouves", parseInt(motsTrouvesMemoire + 1));
+
+		console.log(`Score total: ${localStorage.getItem("score")} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`);
+	}
+	else{
+		localStorage.setItem("score", parseInt((coupsRestants*100*(motATrouver.length / 2))));
+		localStorage.setItem("motsTrouves", parseInt(1));
+		console.log(`Score total: ${localStorage.getItem("score")} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`);
+	}
+}
+
+function effacerScore(){
+	localStorage.removeItem("score");
+	localStorage.removeItem("motsTrouves");
+}
+
