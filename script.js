@@ -1,6 +1,7 @@
 // JEU DU PENDU | Projet passerelle #1 | Programme Rocket | Believemy.com
 
-// VARIABLES UTILES ====================================================================================
+// VARIABLES UTILES ======================================================================================================================================================================
+
 const clavier = [
 	"a",
 	"z",
@@ -354,7 +355,7 @@ let lettreValide = false;
 let coupsRestants = 6;
 let lettresManquantes;
 
-// SELECTION DES ELEMENTS DU DOM A MODIFIER============================================================
+// SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
 let afficheRes = document.querySelector(".mot");
 let afficheClavier = document.querySelector(".clavierVirtuel");
@@ -365,20 +366,24 @@ let bravo = document.querySelector(".bravo");
 let perdu = document.querySelector(".perdu");
 let motPropose = document.querySelector("#motPropose");
 let valider = document.querySelector("#submit");
+document.querySelector("form").addEventListener("submit", function (e) {
+	e.preventDefault();
+	let input = document.querySelector("#motPropose");
+	let proposition = input.value;
+	input.value = "";
+	verifierLaSaisie(proposition);
+});
 
-// LANCEMENT DU SCRIPT =================================================================================
+// LANCEMENT DU SCRIPT =================================================================================================================================================================
+
 lancerLaPartie();
 
-// FONCTIONS ===========================================================================================
+// FONCTIONS ===========================================================================================================================================================================
 
 function lancerLaPartie() {
 	bravo.style.visibility = "hidden";
 	perdu.style.visibility = "hidden";
-	initialisation();
-	genererClavierVirtuel();
-}
 
-function initialisation() {
 	// Génére le mot aléatoire
 	motATrouver = listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
 	console.log(
@@ -396,17 +401,13 @@ function initialisation() {
 	for (let i = 0; i < motATrouver.length; i++) {
 		let nouvelleCase = document.createElement("div");
 		nouvelleCase.textContent = "_";
-		nouvelleCase.className += `case${i}`;
+		nouvelleCase.className += `case${i}`; //En attribuant à la case, une classe contenant l'indice, on pourra selectionner les cases plus facilement par la suite. Voir**
 		afficheRes.appendChild(nouvelleCase);
 	}
-	console.log("Partie initialisée, en attente d'une action utilisateur...");
-}
-
-function genererClavierVirtuel() {
 	//Crée les touches du clavier dans le DOM
-	for (let i = 0; i < clavier.length; i++) {
+	for (let k = 0; k < clavier.length; k++) {
 		let touche = document.createElement("div");
-		touche.textContent = clavier[i];
+		touche.textContent = clavier[k];
 		touche.className = "touche";
 		afficheClavier.appendChild(touche);
 	}
@@ -414,7 +415,7 @@ function genererClavierVirtuel() {
 	const touches = document.querySelectorAll(".touche");
 	touches.forEach((element) => {
 		element.addEventListener("click", function () {
-			lettreChoisie = element.innerText.toLowerCase(); // affecte à la variable lettreChoisie le contenu dans le <div> de la touche précédemment attribué via textContent
+			lettreChoisie = element.innerText.toLowerCase(); // affecte à la variable lettreChoisie le contenu dans le <div> de la touche précédemment attribué via textContent Voir**
 			element.className += "pressee";
 			console.log(
 				`La touche: ${lettreChoisie.toUpperCase()} a été pressée par l'utilisateur > Vérification`
@@ -423,6 +424,7 @@ function genererClavierVirtuel() {
 			this.removeEventListener("click", arguments.callee, false); //et désactive la touche jusqu'à réactualisation de la page
 		});
 	});
+	console.log("Partie initialisée, en attente d'une action utilisateur...");
 }
 
 function verifierLettreChoisie() {
@@ -433,7 +435,7 @@ function verifierLettreChoisie() {
 			console.log(
 				`${lettreChoisie.toUpperCase()} est présent en CASE ${i + 1}`
 			);
-			document.querySelector(`.case${i}`).textContent = lettreChoisie;
+			document.querySelector(`.case${i}`).textContent = lettreChoisie; //On selectionne la case concernée grâce à la classe dynamique case${i}
 			//On ajoute 1 au nombre de lettre trouvée (lettres placées) et on actualise le nombre de lettre manquantes
 			lettrePlacees++;
 			lettresManquantes--;
@@ -464,19 +466,11 @@ function verifierLettreChoisie() {
 		lettreValide = false;
 	}
 	//On réactualise ensuite l'image du pendu.
-	afficheLePendu(nombreDErreur);
+	afficherLePendu(nombreDErreur);
 	console.log("En attente d'une action  utilisateur...");
 }
 
-document.querySelector("form").addEventListener("submit", function (e) {
-	e.preventDefault();
-	let input = document.querySelector("#motPropose");
-	let proposition = input.value;
-	input.value = "";
-	saisieDirecte(proposition);
-});
-
-function saisieDirecte(saisie) {
+function verifierLaSaisie(saisie) {
 	//Vérifie que la saisie n'est pas un nombre, qu'elle n'est pas vide, ni nulle, et qu'elle contient autant de caractère que le mot caché.
 	if (
 		isNaN(saisie) &&
@@ -498,7 +492,7 @@ function saisieDirecte(saisie) {
 			nombreDErreur++;
 			coupsRestants--;
 			afficheCoupsRestants.textContent = coupsRestants;
-			afficheLePendu(nombreDErreur);
+			afficherLePendu(nombreDErreur);
 			if (nombreDErreur === 6) {
 				//Si le nombre d'erreur = 6, alors le joueur a perdu la partie.
 				defaite();
@@ -507,7 +501,7 @@ function saisieDirecte(saisie) {
 	}
 }
 
-function afficheLePendu(erreur) {
+function afficherLePendu(erreur) {
 	//Actualise de manière dynamique le chemin d'accès à l'image du pendu.
 	//De cette manière, je m'affranchi de la fonction SWITCH.
 	affichePendu.innerHTML = `<img src="coup${erreur}.png" alt="pendu" />`;
@@ -517,6 +511,7 @@ function victoire() {
 	//Affiche le message de victoire
 	bravo.style.visibility = "visible";
 	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+
 	//Propose de recommencer la partie
 	recommencer();
 }
@@ -525,8 +520,8 @@ function defaite() {
 	//Affiche le message de défaite.
 	perdu.style.visibility = "visible";
 	perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-	//Propose de recommencer la partie
 
+	//Propose de recommencer la partie
 	recommencer();
 }
 
