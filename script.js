@@ -2,7 +2,7 @@
 
 // VARIABLES UTILES ======================================================================================================================================================================
 const url =
-	"https://api.dicolink.com/v1/mots/motauhasard?avecdef=true&minlong=5&maxlong=-1&verbeconjugue=false&api_key=nVfFHYMFHpiaEH43bTPEEcJj2KITcNwy";
+	"https://api.dicolink.com/v1/mots/motauhasard?avecdef=true&minlong=3&maxlong=13&verbeconjugue=false&api_key=nVfFHYMFHpiaEH43bTPEEcJj2KITcNwy";
 const clavier = [
 	"a",
 	"z",
@@ -347,7 +347,7 @@ const listeDeMots = [
 	"sorcellerie",
 	"belligerant",
 ];
-
+let motAleatoireAPI;
 let motATrouver = "";
 let motATrouverSplit;
 let lettreChoisie;
@@ -358,7 +358,7 @@ let coupsRestants = 6;
 let lettresManquantes;
 let scoreMemoire;
 let motsTrouvesMemoire;
-let motAleatoireAPI;
+
 
 // SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
@@ -401,6 +401,7 @@ function initialisationAffichage() {
 		afficheClavier.appendChild(touche);
 	}
 }
+
 function genererMotAleatoire() {
 	//Génére le mot aleatoire
 	let requete = new XMLHttpRequest();
@@ -437,21 +438,6 @@ function genererMotAleatoire() {
 	};
 }
 
-function activerClavierVirtuel() {
-	// génére un addEventListner("click") pour chaque touche.
-	const touches = document.querySelectorAll(".touche");
-	touches.forEach((element) => {
-		element.addEventListener("click", function () {
-			lettreChoisie = element.innerText.toLowerCase(); // affecte à la variable lettreChoisie le contenu dans le <div> de la touche précédemment attribué via textContent Voir**
-			element.className += "pressee";
-			console.log(
-				`La touche: ${lettreChoisie.toUpperCase()} a été pressée par l'utilisateur > Vérification`
-			);
-			verifierLettreChoisie(); //Envoie la lettreChoisie pour vérification.
-			this.removeEventListener("click", arguments.callee, false); //et désactive la touche jusqu'à réactualisation de la page
-		});
-	});
-}
 function lancerLaPartie() {
 	//cache le bandeau de recherche Dicolink pour dévoiler le mot caché.
 	dicolinkApi.style.visibility = "hidden";
@@ -475,6 +461,22 @@ function lancerLaPartie() {
 	activerClavierVirtuel();
 }
 
+function activerClavierVirtuel() {
+	// génére un addEventListner("click") pour chaque touche.
+	const touches = document.querySelectorAll(".touche");
+	touches.forEach((element) => {
+		element.addEventListener("click", function () {
+			lettreChoisie = element.innerText.toLowerCase(); // affecte à la variable lettreChoisie le contenu dans le <div> de la touche précédemment attribué via textContent Voir**
+			element.className += "pressee";
+			console.log(
+				`La touche: ${lettreChoisie.toUpperCase()} a été pressée par l'utilisateur > Vérification`
+			);
+			verifierLettreChoisie(); //Envoie la lettreChoisie pour vérification.
+			this.removeEventListener("click", arguments.callee, false); //et désactive la touche jusqu'à réactualisation de la page
+		});
+	});
+}
+
 function verifierLettreChoisie() {
 	for (let i = 0; i < motATrouver.length; i++) {
 		// Compare pour chaque case composant le mot caché lettreChoisie avec la lettre du mot caché.
@@ -491,7 +493,7 @@ function verifierLettreChoisie() {
 			console.log(
 				`${lettreChoisie.toUpperCase()} est présent en CASE ${i + 1}`
 			);
-			document.querySelector(`.case${i}`).textContent = lettreChoisie; //On selectionne la case concernée grâce à la classe dynamique case${i}
+			document.querySelector(`.case${i}`).textContent = motATrouverSplit[i]; //On selectionne la case concernée grâce à la classe dynamique case${i}
 			//On ajoute 1 au nombre de lettre trouvée (lettres placées) et on actualise le nombre de lettre manquantes
 			lettrePlacees++;
 			if (lettresManquantes > 0) {
