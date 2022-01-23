@@ -1,7 +1,8 @@
 // JEU DU PENDU | Projet passerelle #1 | Programme Rocket | Believemy.com
 
 // VARIABLES UTILES ======================================================================================================================================================================
-
+const url =
+	"https://api.dicolink.com/v1/mots/motauhasard?avecdef=true&minlong=5&maxlong=-1&verbeconjugue=false&api_key=nVfFHYMFHpiaEH43bTPEEcJj2KITcNwy";
 const clavier = [
 	"a",
 	"z",
@@ -346,7 +347,8 @@ const listeDeMots = [
 	"sorcellerie",
 	"belligerant",
 ];
-let motATrouver;
+
+let motATrouver = "";
 let motATrouverSplit;
 let lettreChoisie;
 let lettrePlacees = 0;
@@ -356,6 +358,7 @@ let coupsRestants = 6;
 let lettresManquantes;
 let scoreMemoire;
 let motsTrouvesMemoire;
+let motAleatoireAPI;
 
 // SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
@@ -366,6 +369,7 @@ let afficheCoupsRestants = document.querySelector(".coupsRestants");
 let affichelettresManquantes = document.querySelector(".lettresManquantes");
 let bravo = document.querySelector(".bravo");
 let perdu = document.querySelector(".perdu");
+let dicolinkApi = document.querySelector(".dicolinkApi");
 let motPropose = document.querySelector("#motPropose");
 let valider = document.querySelector("#submit");
 document.querySelector("form").addEventListener("submit", function (e) {
@@ -377,45 +381,64 @@ document.querySelector("form").addEventListener("submit", function (e) {
 });
 
 // LANCEMENT DU SCRIPT =================================================================================================================================================================
-
-lancerLaPartie();
+initialiserLaPartie();
 
 // FONCTIONS ===========================================================================================================================================================================
+function initialiserLaPartie() {
+	initialisationAffichage();
+	genererMotAleatoire();
+}
 
-function lancerLaPartie() {
+function initialisationAffichage() {
 	bravo.style.visibility = "hidden";
 	perdu.style.visibility = "hidden";
-	console.log(localStorage.length);
-	console.log(localStorage.getItem("score"));
 
-	// Génére le mot aléatoire
-	motATrouver = listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
-	console.log(
-		`Le mot généré parmis les ${
-			listeDeMots.length
-		} possibilités est: ${motATrouver.toUpperCase()}, il contient ${
-			motATrouver.length
-		} lettres.`
-	);
-	motATrouverSplit = motATrouver.split("");
-	lettresManquantes = motATrouver.length;
-	affichelettresManquantes.textContent = lettresManquantes;
-
-	//Crée autant de cases que de lettres à trouver dans le DOM
-	for (let i = 0; i < motATrouver.length; i++) {
-		let nouvelleCase = document.createElement("div");
-		nouvelleCase.textContent = "_";
-		nouvelleCase.className += `case${i}`; //En attribuant à la case, une classe contenant l'indice, on pourra selectionner les cases plus facilement par la suite. Voir**
-		afficheRes.appendChild(nouvelleCase);
-	}
-	//Crée les touches du clavier dans le DOM
+	// Affiche le clavier virtuel dans le DOM
 	for (let k = 0; k < clavier.length; k++) {
 		let touche = document.createElement("div");
 		touche.textContent = clavier[k];
 		touche.className = "touche";
 		afficheClavier.appendChild(touche);
 	}
-	//et génére un addEventListner("click") pour chaque touche.
+}
+function genererMotAleatoire() {
+	//Génére le mot aleatoire
+	let requete = new XMLHttpRequest();
+	requete.open("GET", url);
+	requete.responseType = "json";
+	requete.send();
+
+	requete.onload = function () {
+		if (requete.readyState === XMLHttpRequest.DONE) {
+			if (requete.status === 200) {
+				let reponse = requete.response;
+				console.log(reponse);
+				motATrouver = reponse[0].mot;
+				console.log(
+					`Le mot généré via DicoLink API est: ${motATrouver.toUpperCase()}, il contient ${
+						motATrouver.length
+					} lettres.`
+				);
+				lancerLaPartie();
+			} else {
+				//Si DicoLink non disponible, génère un mots aléatoire à partir du tableau listeDeMots
+				motATrouver =
+					listeDeMots[Math.floor(Math.random() * listeDeMots.length)];
+				console.log(
+					`Le mot généré parmis les ${
+						listeDeMots.length
+					} possibilités est: ${motATrouver.toUpperCase()}, il contient ${
+						motATrouver.length
+					} lettres.`
+				);
+				lancerLaPartie();
+			}
+		}
+	};
+}
+
+function activerClavierVirtuel() {
+	// génére un addEventListner("click") pour chaque touche.
 	const touches = document.querySelectorAll(".touche");
 	touches.forEach((element) => {
 		element.addEventListener("click", function () {
@@ -428,13 +451,42 @@ function lancerLaPartie() {
 			this.removeEventListener("click", arguments.callee, false); //et désactive la touche jusqu'à réactualisation de la page
 		});
 	});
+}
+function lancerLaPartie() {
+	//cache le bandeau de recherche Dicolink pour dévoiler le mot caché.
+	dicolinkApi.style.visibility = "hidden";
+
+	//Crée autant de cases que de lettres à trouver dans le DOM (mot caché)
+	for (let i = 0; i < motATrouver.length; i++) {
+		let nouvelleCase = document.createElement("div");
+		nouvelleCase.textContent = "_";
+		nouvelleCase.className += `case${i}`; //En attribuant à la case, une classe contenant l'indice, on pourra selectionner les cases plus facilement par la suite. Voir**
+		afficheRes.appendChild(nouvelleCase);
+	}
+
+	//initialise les variables utiles
+	motATrouverSplit = motATrouver.split("");
+	lettresManquantes = motATrouver.length;
+	affichelettresManquantes.textContent = lettresManquantes;
+
 	console.log("Partie initialisée, en attente d'une action utilisateur...");
+
+	//active le clavier virtuel
+	activerClavierVirtuel();
 }
 
 function verifierLettreChoisie() {
 	for (let i = 0; i < motATrouver.length; i++) {
 		// Compare pour chaque case composant le mot caché lettreChoisie avec la lettre du mot caché.
-		if (lettreChoisie == motATrouverSplit[i]) {
+		if (
+			lettreChoisie == motATrouverSplit[i] ||
+			(lettreChoisie == "e" && motATrouverSplit[i] == "é") ||
+			motATrouverSplit[i] == "è" ||
+			motATrouverSplit[i] == "ê" ||
+			(lettreChoisie == "a" && motATrouverSplit[i] == "à") ||
+			(lettreChoisie == "i" && motATrouverSplit[i] == "ï") ||
+			(lettreChoisie == "o" && motATrouverSplit[i] == "ô")
+		) {
 			//Si la lettreChoisie = la lettre composant le mot caché, on remplace le contenu de la case par la valeur de lettreChoisie.
 			console.log(
 				`${lettreChoisie.toUpperCase()} est présent en CASE ${i + 1}`
@@ -442,7 +494,11 @@ function verifierLettreChoisie() {
 			document.querySelector(`.case${i}`).textContent = lettreChoisie; //On selectionne la case concernée grâce à la classe dynamique case${i}
 			//On ajoute 1 au nombre de lettre trouvée (lettres placées) et on actualise le nombre de lettre manquantes
 			lettrePlacees++;
-			lettresManquantes--;
+			if (lettresManquantes > 0) {
+				//Pour éviter que lettresManquantes devienne négative lorsque l'on découvre des lettres déjà découvertes par l'utilisation de la saisie directe.
+				lettresManquantes--;
+			}
+
 			affichelettresManquantes.textContent = lettresManquantes;
 			//En passant la variable lettreValide à "vrai", on garde en mémoire pour la suite qu'il ne faudra décrémenter la variable "coupsRestants".
 			lettreValide = true;
@@ -486,21 +542,13 @@ function verifierLaSaisie(saisie) {
 		console.log(
 			`L'utilisateur a entré le mot ${saisie.toUpperCase()} => Vérification:`
 		);
-		if (saisie === motATrouver) {
-			//Si le joueur à trouver le mot caché, fin de la partie, c'est gagné.
-			victoire();
-			console.log(`C'est gagné !`);
-		} else {
-			//Sinon, le compteur d'erreur est incrémenté, le nombre de coups restant est décrémentée, et l'image du pendu est actualisé.
-			console.log(`Ce n'est pas le mot caché [${motATrouver.toUpperCase()}]`);
-			nombreDErreur++;
-			coupsRestants--;
-			afficheCoupsRestants.textContent = coupsRestants;
-			afficherLePendu(nombreDErreur);
-			if (nombreDErreur === 6) {
-				//Si le nombre d'erreur = 6, alors le joueur a perdu la partie.
-				defaite();
-			}
+
+		let saisieSplit = saisie.split("");
+
+		for (let i = 0; i < saisieSplit.length; i++) {
+			lettreChoisie = saisieSplit[i];
+			console.log(lettreChoisie);
+			verifierLettreChoisie();
 		}
 	}
 }
@@ -512,8 +560,12 @@ function afficherLePendu(erreur) {
 }
 
 function victoire() {
+	//Efface le clavier
+	afficheClavier.style.visibility = "hidden";
 	//Affiche le message de victoire
 	bravo.style.visibility = "visible";
+	afficheClavier.style.visibility = "hidden";
+
 	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
 
 	calculerScore();
@@ -522,8 +574,12 @@ function victoire() {
 }
 
 function defaite() {
+	//Efface le clavier
+	afficheClavier.style.visibility = "hidden";
+
 	//Affiche le message de défaite.
 	perdu.style.visibility = "visible";
+
 	perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
 
 	//Propose de recommencer la partie
@@ -538,26 +594,42 @@ function recommencer() {
 	});
 }
 
-function calculerScore(){
-	if(localStorage.getItem("score") && localStorage.getItem("motsTrouves")){
+function calculerScore() {
+	//fonction non implémentée dans le DOM pour le moment.
+	//Permet d'enregistrer dans le navgateur le nombre de mots trouvés ainsi qu'un score
+	if (localStorage.getItem("score") && localStorage.getItem("motsTrouves")) {
 		scoreMemoire = parseInt(localStorage.getItem("score"));
 		motsTrouvesMemoire = parseInt(localStorage.getItem("motsTrouves"));
 		localStorage.removeItem("score");
 		localStorage.removeItem("motsTrouves");
-		localStorage.setItem("score", parseInt(scoreMemoire + (coupsRestants*100*(motATrouver.length / 2))));
+		localStorage.setItem(
+			"score",
+			parseInt(scoreMemoire + coupsRestants * 100 * (motATrouver.length / 2))
+		);
 		localStorage.setItem("motsTrouves", parseInt(motsTrouvesMemoire + 1));
 
-		console.log(`Score total: ${localStorage.getItem("score")} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`);
-	}
-	else{
-		localStorage.setItem("score", parseInt((coupsRestants*100*(motATrouver.length / 2))));
+		console.log(
+			`Score total: ${localStorage.getItem(
+				"score"
+			)} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`
+		);
+	} else {
+		localStorage.setItem(
+			"score",
+			parseInt(coupsRestants * 100 * (motATrouver.length / 2))
+		);
 		localStorage.setItem("motsTrouves", parseInt(1));
-		console.log(`Score total: ${localStorage.getItem("score")} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`);
+		console.log(
+			`Score total: ${localStorage.getItem(
+				"score"
+			)} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`
+		);
 	}
 }
 
-function effacerScore(){
+function effacerScore() {
+	//fonction non implémentée dans le DOM pour le moment.
+	//Permet de supprimer les données score et nombre de mots trouvés du navigateur
 	localStorage.removeItem("score");
 	localStorage.removeItem("motsTrouves");
 }
-
