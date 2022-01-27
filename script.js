@@ -359,7 +359,6 @@ let lettresManquantes;
 let scoreMemoire;
 let motsTrouvesMemoire;
 
-
 // SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
 let afficheRes = document.querySelector(".mot");
@@ -367,11 +366,12 @@ let afficheClavier = document.querySelector(".clavierVirtuel");
 let affichePendu = document.querySelector(".score_centre");
 let afficheCoupsRestants = document.querySelector(".coupsRestants");
 let affichelettresManquantes = document.querySelector(".lettresManquantes");
-let bravo = document.querySelector(".bravo");
-let perdu = document.querySelector(".perdu");
+let resultatPartie = document.querySelector(".resultatPartie");
 let dicolinkApi = document.querySelector(".dicolinkApi");
 let motPropose = document.querySelector("#motPropose");
 let valider = document.querySelector("#submit");
+let motsTrouves = document.querySelector(".nbremots");
+let scoreTotal = document.querySelector(".score_total");
 document.querySelector("form").addEventListener("submit", function (e) {
 	e.preventDefault();
 	let input = document.querySelector("#motPropose");
@@ -390,9 +390,8 @@ function initialiserLaPartie() {
 }
 
 function initialisationAffichage() {
-	bravo.style.visibility = "hidden";
-	perdu.style.visibility = "hidden";
-
+	resultatPartie.style.visibility = "hidden";
+	calculerScore();
 	// Affiche le clavier virtuel dans le DOM
 	for (let k = 0; k < clavier.length; k++) {
 		let touche = document.createElement("div");
@@ -533,24 +532,25 @@ function verifierLettreChoisie() {
 }
 
 function verifierLaSaisie(saisie) {
-	//Vérifie que la saisie n'est pas un nombre, qu'elle n'est pas vide, ni nulle, et qu'elle contient autant de caractère que le mot caché.
 	if (
 		isNaN(saisie) &&
 		saisie != "" &&
 		saisie != null &&
 		saisie.length === motATrouver.length
 	) {
-		//Si oui, alors on compare la proposition du joueur avec le mot caché.
-		console.log(
-			`L'utilisateur a entré le mot ${saisie.toUpperCase()} => Vérification:`
-		);
-
-		let saisieSplit = saisie.split("");
-
-		for (let i = 0; i < saisieSplit.length; i++) {
-			lettreChoisie = saisieSplit[i];
-			console.log(lettreChoisie);
-			verifierLettreChoisie();
+		console.log(`L'utilisateur a entré le mot ${saisie} => Vérification:`);
+		if (saisie === motATrouver) {
+			victoire();
+			console.log(`C'est gagné !`);
+		} else {
+			console.log(`Ce n'est pas le mot caché [${motATrouver.toUpperCase()}]`);
+			nombreDErreur++;
+			coupsRestants--;
+			afficheCoupsRestants.textContent = coupsRestants;
+			afficherLePendu(nombreDErreur);
+			if (nombreDErreur === 6) {
+				defaite();
+			}
 		}
 	}
 }
@@ -565,12 +565,17 @@ function victoire() {
 	//Efface le clavier
 	afficheClavier.style.visibility = "hidden";
 	//Affiche le message de victoire
-	bravo.style.visibility = "visible";
+	resultatPartie.style.visibility = "visible";
+	resultatPartie.style.backgroundColor = "green";
+	resultatPartie.style.color = "#f1f1f1";
 	afficheClavier.style.visibility = "hidden";
-
-	bravo.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
-
+	localStorage.setItem("motsTrouves", parseInt(motsTrouvesMemoire + 1));
 	calculerScore();
+	resultatPartie.innerHTML = `<p>Bravo !</p> <p>Le mot caché était: <b>${motATrouver}</b></p>
+	<p>Vous avez gagné ${
+		coupsRestants * 100 * (motATrouver.length / 2)
+	} points ! <p>
+	<button>Recommencer</button>`;
 	//Propose de recommencer la partie
 	recommencer();
 }
@@ -580,9 +585,10 @@ function defaite() {
 	afficheClavier.style.visibility = "hidden";
 
 	//Affiche le message de défaite.
-	perdu.style.visibility = "visible";
+	resultatPartie.style.visibility = "visible";
+	resultatPartie.style.backgroundColor = "coral";
 
-	perdu.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
+	resultatPartie.innerHTML = `<p>Oups... C'est la loose !</p> <p>Le mot caché était: <b>${motATrouver}</b></p><button>Recommencer</button>`;
 
 	//Propose de recommencer la partie
 	recommencer();
@@ -597,8 +603,6 @@ function recommencer() {
 }
 
 function calculerScore() {
-	//fonction non implémentée dans le DOM pour le moment.
-	//Permet d'enregistrer dans le navgateur le nombre de mots trouvés ainsi qu'un score
 	if (localStorage.getItem("score") && localStorage.getItem("motsTrouves")) {
 		scoreMemoire = parseInt(localStorage.getItem("score"));
 		motsTrouvesMemoire = parseInt(localStorage.getItem("motsTrouves"));
@@ -608,24 +612,19 @@ function calculerScore() {
 			"score",
 			parseInt(scoreMemoire + coupsRestants * 100 * (motATrouver.length / 2))
 		);
-		localStorage.setItem("motsTrouves", parseInt(motsTrouvesMemoire + 1));
-
-		console.log(
-			`Score total: ${localStorage.getItem(
-				"score"
-			)} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`
-		);
+		localStorage.setItem("motsTrouves", parseInt(motsTrouvesMemoire));
+		scoreTotal.innerHTML = `<p>Score total:</p><p> ${localStorage.getItem(
+			"score"
+		)} points`;
+		motsTrouves.innerHTML = `<p>Mots trouvés:</p><p> ${localStorage.getItem(
+			"motsTrouves"
+		)}`;
 	} else {
 		localStorage.setItem(
 			"score",
 			parseInt(coupsRestants * 100 * (motATrouver.length / 2))
 		);
-		localStorage.setItem("motsTrouves", parseInt(1));
-		console.log(
-			`Score total: ${localStorage.getItem(
-				"score"
-			)} -- Mots trouvés: ${localStorage.getItem("motsTrouves")}`
-		);
+		localStorage.setItem("motsTrouves", parseInt(0));
 	}
 }
 
