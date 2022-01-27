@@ -238,14 +238,14 @@ form {
 	color: #f1c450;
 }
 .score_tableau {
-	height: 80px;
+	height: 60px;
 	width: 500px;
 
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
 .nbremots {
-	height: 80px;
+	height: 60px;
 	width: 250px;
 	background: #35858b;
 	border-radius: 10px 0px 0px 10px;
@@ -257,7 +257,7 @@ form {
 }
 
 .score_total {
-	height: 80px;
+	height: 60px;
 	width: 250px;
 	background: #f1c450;
 	border-radius: 0px 10px 10px 0px;
