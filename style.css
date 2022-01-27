@@ -27,7 +27,7 @@ body {
 
 header {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 h1 {
@@ -73,7 +73,7 @@ button:active {
 
 form {
 	display: flex;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .regle {
