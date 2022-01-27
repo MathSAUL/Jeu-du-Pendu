@@ -356,8 +356,8 @@ let nombreDErreur = 0;
 let lettreValide = false;
 let coupsRestants = 6;
 let lettresManquantes;
-let scoreMemoire;
-let motsTrouvesMemoire;
+let scoreMemoire = 0;
+let motsTrouvesMemoire = 0;
 
 // SELECTION DES ELEMENTS DU DOM A MODIFIER==============================================================================================================================================
 
@@ -381,6 +381,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 });
 
 // LANCEMENT DU SCRIPT =================================================================================================================================================================
+
 initialiserLaPartie();
 
 // FONCTIONS ===========================================================================================================================================================================
